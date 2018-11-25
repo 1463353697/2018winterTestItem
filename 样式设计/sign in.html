@@ -1,16 +1,13 @@
 <html>
     <head>
-        <title>登录页面</title>
         <meta charset="utf-8">
+        <title>注册</title>
         <style>
             body {
                 background-color: rgb(68, 124, 170);
                 display: flex;
                 justify-content: center;
-               
-			    /* align-items: center; */
-               
-
+              
             }
             .enterBlock {
                 display: flex;
@@ -24,8 +21,8 @@
             }
             .enterHead {
                 display: flex;
-                padding: 50px 100px 0px 100px;
                 height: 20px;
+                padding: 50px 100px 0px 100px;
                 
                
 
@@ -48,49 +45,34 @@
             .enterBody input::-webkit-input-placeholder {
                 color: #ffffff;
             }
-            .signInUp {
-                display: flex;
-                justify-content: space-between;
-                margin-top: 30px;
+            #getCode input {
+                width: 110px;
             }
-            .signInUp button {
-                display: flex;
-                padding: 8px 25px;
+            #getCode button {
                 background-color: rgb(195, 227, 236);
                 border: 1px solid rgba(223, 222, 228, 0.87);
                 border-radius: 4px;
-			    
-            }
-            .forgetPws{
-                display: flex;
-                justify-content: center;
-                color: #ffffff;
-                font-size: 13px;
-               
-            }
-           
+                padding: 5px 3px;
 
+            }
+            
         </style>
     </head>
     <body>
         <div class="enterBlock">
-            <div class="enterHead">登录</div>
+            <div class="enterHead">注册</div>
             <div class="enterBody">
-                <input placeholder="请输入用户名">
+                <input placeholder="请输入手机号">
                 <input placeholder="请输入密码">
-                <div class="signInUp">
-                    <button>登录</button>
-                    <button>注册</button>
+                <input placeholder="请再次输入密码">
+                <div id="getCode">
+                    <input placeholder="请输入验证码">
+                    <button>获取验证码</button>
                 </div>
-                <div class="forgetPws"><p>找回密码</p></div>
-            </div>
-            
                 
-           
-            
-            
+            </div>
         </div>
-
     </body>
+
 
 </html>
