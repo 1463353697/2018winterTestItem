@@ -1,5 +1,6 @@
 <template>
     <div class="enter">
+        <html>
         <body>
             <div class="enterBlock">
                 <div class="enterHead"><i class="icon iconfont icon-denglu">登录</i></div>
@@ -7,14 +8,15 @@
                     <input placeholder="请输入用户名">
                     <input placeholder="请输入密码">
                     <div class="signInUp">
-                        <button>登录</button>
+                        <button><router-link to="/mainPage">登录</router-link></button>
                         <button>注册</button>
                     </div>
-                    <div class="forgetPws"><p>找回密码</p></div>
+                    <div class="forgetPws"><router-link to="/findPsw">找回密码</router-link></div>
                 </div>
             
             </div>
         </body>
+        </html>
     </div>
     
 </template>
@@ -24,22 +26,24 @@ export default {
 }
 </script>
 <style scoped>
+    .enter{
+        background-color: rgb(68, 124, 170);
+    }
     body {
         background-color: rgb(68, 124, 170);
-        display: flex;
-        justify-content: center;
+       
        
         }
         .enterBlock {
             background-color: rgb(68, 124, 170);
             display: flex;
-            justify-content: center;
             width: 350px;
             height: 500px;
             border: solid 2px white;
             border-radius: 8px;
 			box-shadow: 0px 5px 5px 0px #ffffff;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
         .enterHead {
             display: flex;
