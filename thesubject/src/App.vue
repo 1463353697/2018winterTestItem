@@ -1,10 +1,12 @@
 <template>
   <div id="app">
+    
     <div>
       <router-link to="/">登录</router-link>
       <router-link to="/signIn">注册</router-link>
       <router-link to="/findPsw">找回密码</router-link>
       <router-link to="/mainPage">进入论坛</router-link>
+      <router-link to="/personIfm">个人中心</router-link>
     </div>
    
     <router-view></router-view>
@@ -24,7 +26,7 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
   
   
