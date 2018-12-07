@@ -5,6 +5,7 @@ import findPsw from '@/components/findPsw'
 import signIn from '@/components/signIn'
 import mainPage from '@/components/mainPage'
 import personIfm from '@/components/personIfm'
+import article from "@/components/article"
 
 Vue.use(Router)
 
@@ -30,6 +31,10 @@ export default new Router({
       path: '/personIfm',
       name: 'personIfm',
       component: personIfm
+    },{
+      path: '/article',
+      name: "article",
+      component: article
     }
   ]
 })

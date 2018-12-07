@@ -7,6 +7,7 @@
       <router-link to="/findPsw">找回密码</router-link>
       <router-link to="/mainPage">进入论坛</router-link>
       <router-link to="/personIfm">个人中心</router-link>
+      <router-link to="/article">文章</router-link>
     </div>
    
     <router-view></router-view>
@@ -20,15 +21,16 @@ export default {
 </script>
 
 <style>
-#app {
-  margin: 0px;
-  padding: 0px;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #2c3e50;
-  
-  
-}
+  #app {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* text-align: center; */
+    color: #2c3e50; 
+  }
+  button {
+    cursor: pointer;
+  }
 </style>
