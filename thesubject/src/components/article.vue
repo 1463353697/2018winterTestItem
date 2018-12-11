@@ -57,7 +57,7 @@
                     </div>
                     <!-- 评论的内容 -->
                     <div class="words" >
-                        <p>bababa</p>
+                        <p>这是评论的内容</p>
                     </div>
                 </div>
             </div>
