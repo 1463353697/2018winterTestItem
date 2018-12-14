@@ -8,11 +8,11 @@
                     <li>
                         <span>发布于</span>
                         <span>2天</span>
-                        <span>前/</span>
+                        <span>前 /</span>
                     </li>
                     <li>
                         <span>作者</span>
-                        <span>you/</span>
+                        <span>you /</span>
                     </li>
                     <li>
                         <span>2018</span>
@@ -25,6 +25,7 @@
             
         
             <!-- 这一块是文章的具体内容，要从接口里面获取 -->
+            <!-- 可以使用v-for绑定和vue模板来展示文章列表 -->
             <div class="articleBlock">
                     <p>这是文章的具体内容</p>
 

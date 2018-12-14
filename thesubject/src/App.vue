@@ -4,7 +4,7 @@
     <div>
       <router-link to="/">登录</router-link>
       <router-link to="/signIn">注册</router-link>
-      <router-link to="/findPsw">找回密码</router-link>
+      
       <router-link to="/mainPage">进入论坛</router-link>
       <router-link to="/personIfm">个人中心</router-link>
       <router-link to="/article">文章</router-link>
