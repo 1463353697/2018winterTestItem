@@ -8,7 +8,7 @@
                     <p id="personSl">balabalabala</p>       
                 </div>
             </div>  
-            <div class="detailIfm">
+            <div class="detailIfm" id="showIfm">
                 <div class="detailIfmBlock">
                     <span>
                         <i class="icon iconfont icon-_rili"></i>
@@ -51,8 +51,14 @@
                 
                 
             </div> 
-            <div class="changeIfm"><p>修改资料</p></div>
-            <div class="changeIfmBlock">
+
+            
+            <!-- 这里尝试过用子路由的方法，但是失败了 -->
+            <!-- <router-link class="changeBlock" to="/personIfm/changeIfm">修改资料</router-link> -->
+            <div class="changeIfm" id="changeBtn"><p>修改资料</p></div>
+
+            <!-- 这下面是点击修改资料之后弹出来的修改框 -->
+            <div class="changeIfmBlock" id="changeBlock">
                 <div>
                         
                     <h4>年龄</h4>
@@ -97,6 +103,22 @@
 export default {
     
 }
+    window.onload = function(){
+
+        // 这里是点击修改资料之后，弹出修改资料的框
+        var btn = document.getElementById('changeBtn');
+        // 这是展示个人信息的板块
+        var showIfm = document.getElementById('showIfm');
+
+        var changeBlock = document.getElementById('changeBlock');
+        btn.onclick = function(){
+            changeBlock.style.display = "block";
+            showIfm.style.filter = "opacity(50%)";
+            showIfm.style.backgroundColor = "grey";
+            
+        } 
+    }
+
 </script>
 <style scoped>
     .personIfm {
@@ -152,6 +174,9 @@ export default {
         margin: 0px 20px 0px 20px;
     }
     .changeIfm {
+        cursor: pointer;
+    }
+    .changeBlock {
         margin-top:15px;
         cursor: pointer;
     }
@@ -159,7 +184,8 @@ export default {
         display: none;
         position: absolute;
         width:300px;
-        top: 300px;
+        top: 25%;
+        left: 10%;
         background-color: #fff;
         border: solid 1px rgb(195, 227, 236);
     }

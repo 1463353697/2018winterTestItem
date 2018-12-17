@@ -3,6 +3,7 @@
         <div class="articleBlock">
             <div class="head">
                 <h2>文章标题</h2>
+                <!-- 点开预览时要展示相应的文章，要通过文章相应的ID值来实现 -->
             
                 <div class="detailIfm">
                     <li>
@@ -22,12 +23,10 @@
             </div>
 
             
-            
-        
             <!-- 这一块是文章的具体内容，要从接口里面获取 -->
             <!-- 可以使用v-for绑定和vue模板来展示文章列表 -->
             <div class="articleBlock">
-                    <p>这是文章的具体内容</p>
+                <p>这是文章的具体内容</p>
 
             </div>
 

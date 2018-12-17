@@ -1,13 +1,15 @@
 <template>
-    <div id="enterBlock">
-        <div class="enterHead"><i class="icon iconfont icon-zhanghaoguanli">注册</i></div>
-        <div class="enterBody" >
-            <input  type="text" placeholder="请输入用户名" v-model="userName" ><label></label>
-            <input type="text" placeholder="请输入密码"><label></label>
-            <input type="text" placeholder="请再次输入密码" v-model="psw"><label></label>
-            
-            <div class="signInBtn" id="signBtn"><button>注册</button></div>
+    <div class="signIn">
+        <div id="enterBlock">
+            <div class="enterHead"><i class="icon iconfont icon-zhanghaoguanli">注册</i></div>
+            <div class="enterBody" >
+                <input  type="text" placeholder="请输入用户名" v-model="userName" ><label></label>
+                <input type="text" placeholder="请输入密码"><label></label>
+                <input type="text" placeholder="请再次输入密码" v-model="psw"><label></label>
                 
+                <div class="signInBtn" id="signBtn"><button>注册</button></div>
+                    
+            </div>
         </div>
     </div>
     
@@ -149,6 +151,12 @@ export default {
     
 </script>
 <style scoped>
+    .signIn{
+        /* background-color: rgb(68, 124, 170); */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
 
     #enterBlock {

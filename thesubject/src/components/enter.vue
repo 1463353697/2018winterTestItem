@@ -1,7 +1,7 @@
 <template>
     <div class="enter">
-        <html>
-        <body>
+        
+        
             <div class="enterBlock">
                 <div class="enterHead"><i class="icon iconfont icon-denglu">登录</i></div>
                 <div class="enterBody" >
@@ -11,12 +11,12 @@
                         <button><router-link to="/mainPage">登录</router-link></button>
                         <button>注册</button>
                     </div>
-                    <div class="forgetPws"><router-link to="/findPsw">找回密码</router-link></div>
+                    
                 </div>
             
             </div>
-        </body>
-        </html>
+        
+        
     </div>
     
 </template>
@@ -31,13 +31,13 @@ export default {
 </script>
 <style scoped>
     .enter{
-        background-color: rgb(68, 124, 170);
+        /* background-color: rgb(68, 124, 170); */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
     }
-    body {
-        background-color: rgb(68, 124, 170);
-       
-       
-    }
+    
     .enterBlock {
         background-color: rgb(68, 124, 170);
         display: flex;
@@ -72,28 +72,20 @@ export default {
     .enterBody input::-webkit-input-placeholder {
         color: #ffffff;
     }
-        .signInUp {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        .signInUp button {
-            display: flex;
-            padding: 8px 25px;
-            background-color: rgb(195, 227, 236);
-            border: 1px solid rgba(223, 222, 228, 0.87);
-            border-radius: 4px;
+    .signInUp {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+    .signInUp button {
+        display: flex;
+        padding: 8px 25px;
+        background-color: rgb(195, 227, 236);
+        border: 1px solid rgba(223, 222, 228, 0.87);
+        border-radius: 4px;
 			    
-        }
-        .forgetPws{
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            color: #ffffff;
-            font-size: 13px;
-               
-        }
-
+    }
+        
 
 
 </style>
