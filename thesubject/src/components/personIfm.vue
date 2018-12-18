@@ -111,12 +111,12 @@ export default {
         var showIfm = document.getElementById('showIfm');
 
         var changeBlock = document.getElementById('changeBlock');
-        btn.onclick = function(){
-            changeBlock.style.display = "block";
-            showIfm.style.filter = "opacity(50%)";
-            showIfm.style.backgroundColor = "grey";
+        // btn.onclick = function(){
+        //     changeBlock.style.display = "block";
+        //     showIfm.style.filter = "opacity(50%)";
+        //     showIfm.style.backgroundColor = "grey";
             
-        } 
+        // } 
     }
 
 </script>

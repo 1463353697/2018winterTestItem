@@ -30,6 +30,7 @@ export default {
     }
 }
     window.onload = function(){
+        alert("执行js代码");
         
         var enterInput = document.getElementsByTagName("input");
         var enterLabel = document.getElementsByTagName("label");
