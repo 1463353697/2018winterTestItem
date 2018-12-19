@@ -8,7 +8,11 @@
                     <input id="userName" placeholder="请输入用户名">
                     <input id="psw" placeholder="请输入密码">
                     <div class="signInUp">
-                        <button><router-link to="/mainPage">登录</router-link></button>
+                        <button id="enterBtn">
+                            登录
+                           
+                            <!-- <router-link to="/mainPage">登录</router-link> -->
+                        </button>
                         <button>注册</button>
                     </div>
                     
@@ -21,13 +25,43 @@
     
 </template>
 <script>
+import jsonp from 'jsonp';
+import axios from 'axios';
+import md5 from 'js-md5';
 export default {
-    
-}
-    window.onload=function(){
+    mounted: function(){
+        alert("执行登录界面js代码");
+        
         var userName = document.getElementById('userName').value;
         var psw = document.getElementById('psw').value;
+        var pswMd5 = md5(psw);
+        var enterBtn = document.getElementById('enterBtn');
+        
+        var theRequest = "http://hb9.api.okayapi.com/?s=App.User.Login&app_key=E0A52635859871C072A9B440A8352D61&username="+userName+"&password="+pswMd5;
+        enterBtn.onclick = function(){
+            // 这里用户名无法上传
+            console.log(userName);
+            console.log(pswMd5);
+            jsonp(theRequest,null,(err,data) => {
+                if(err){
+                    console.log(err);
+                } else{
+                    console.log(data);
+                    if(data.data.err_code == 0){
+                        alert("登录成功");
+                        return data.data.uuid;
+                    }
+                    if(data.data.err_code == 1){
+                        alert(data.data.err_msg);
+                    }
+
+                }
+            })
+        }
+    
     }
+}
+    
 </script>
 <style scoped>
     .enter{

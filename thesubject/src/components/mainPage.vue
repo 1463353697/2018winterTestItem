@@ -40,7 +40,41 @@
                     
                 </el-tab-pane>
                 <el-tab-pane id="askBlock" label= "问答">
+
                     问答
+                    <div class="mainBlock">
+                        <ul>
+                            <li class="articles" v-for="articleIfm in allListData">
+                                <!-- 作者头像 -->
+                                <div>
+                                    <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                    <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                </div>
+                                <!-- 分类和置顶 -->
+                                <div class="tags">
+                                    <button>{{articleIfm.tab}}</button>
+
+                                </div>
+                                <!-- 标题等信息 -->
+                                <div class="titleAnd">
+                                    <h2>{{articleIfm.title}}</h2>
+                                    <span>
+                                        <p>{{articleIfm.reply_count}}人次访问</p>
+                                        |
+                                        <p>{{articleIfm.visit_count}}条评论</p>
+                                    </span>
+                                    
+                                
+
+                                </div>
+                                <!-- 最后回复时间 -->
+                                <div class="time">
+                                    <p>{{articleIfm.last_reply_at}}</p>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     
                     
                 </el-tab-pane>
@@ -64,8 +98,7 @@
     </div>
     
 </template>
-<script src="jquery.js"></script>
-<script src="jquery.lazyload.js"></script>
+
 <script>
 import axios from "axios";
 export default {
@@ -75,32 +108,36 @@ export default {
 
         }
     },
+    created: 
+        function(){
+            axios.get("https://cnodejs.org/api/v1/topics")
+            .then(response=>{
+                
+                this.allListData = response.data.data;
+                console.log(response);
+                
+                console.log("加载完毕");
+            
 
-    
-    created: function(){
-        axios.get("https://cnodejs.org/api/v1/topics")
-        .then(response=>{
-            
-            this.allListData = response.data.data;
-            console.log(response);
-            
-            console.log("加载完毕");
+            })
+            .catch(error=>{
+                console.log(error);
+
+            })
+        },
+    mounted:
+        function(){
+            alert("执行主页面js代码");
+            var askLi = document.getElementById('askBlock').getElementsByTagName('li');
+            // askLi[0].display.style = "none";
            
-
-        })
-        .catch(error=>{
-            console.log(error);
-
-        })
-    },
-    function(){
-        var askLi = document.getElementById('askBlock').getElementsByTagName('li');
-        for(var i = 0; i<askLi.length;i++){
-            if(this.allListData[i].tab != "ask"){
-                askLi[i].style.display = "none";
+            for(var i = 0; i<askLi.length;i++){
+                if(this.allListData[i].tab != "ask"){
+                    askLi[i].style.display = "none";
+                }
             }
         }
-    }
+    
    
     
 }
