@@ -113,9 +113,9 @@ export default {
     //     }
 
     // }
-    $(function(){
-        $("img.lazy").lazyload();
-    })
+    // $(function(){
+    //     $("img.lazy").lazyload();
+    // })
 </script>
 <style scoped>
     .mainPage {
