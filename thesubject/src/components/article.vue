@@ -2,6 +2,7 @@
     <div class="article">
         <div class="articleBlock">
             <div class="head">
+                
                 <h2>文章标题</h2>
                 <!-- 点开预览时要展示相应的文章，要通过文章相应的ID值来实现 -->
             
@@ -67,7 +68,40 @@
     
 </template>
 <script>
+import axios from "axios";
 export default {
+    data(){
+        return{
+            theArticle:"",
+            theId:this.$route.params.id
+
+
+        }
+    },
+    computed:{
+        getId(){
+            return this.$route.params.id;
+        }
+    },
+    created:
+        function(){
+            console.log(this.theId);
+           
+            // var theGet = "https://cnodejs.org/api/v1/topic/"+this.theId;
+            // axios.get(theGet)
+            // .then(response=>{
+            //     this.theArticle = response.data.data;
+
+            // })
+            // .catch(error=>{
+            //     console.log(error);
+            // })
+        },
+    mounted:
+        function(){
+            var theGet = "https://cnodejs.org/api/v1/topic/:"+this.$route.params.id;
+        }
+    
     
 }
 </script>

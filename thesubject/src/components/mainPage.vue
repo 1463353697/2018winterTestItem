@@ -6,35 +6,39 @@
                     全部
                     <div class="mainBlock">
                         <ul>
-                            <li class="articles" v-for="articleIfm in allListData">
-                                <!-- 作者头像 -->
-                                <div>
-                                    <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                    <img class="lazy" :src="articleIfm.author.avatar_url"> 
-                                </div>
-                                <!-- 分类和置顶 -->
-                                <div class="tags">
-                                    <button>{{articleIfm.tab}}</button>
+                            
+                                <li class="articles" v-for="articleIfm in allListData">
+                                    <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                        <!-- 作者头像 -->
+                                        <div>
+                                            <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                            <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                        </div>
+                                        <!-- 分类和置顶 -->
+                                        <div class="tags">
+                                            <button>{{articleIfm.tab}}</button>
 
-                                </div>
-                                <!-- 标题等信息 -->
-                                <div class="titleAnd">
-                                    <h2>{{articleIfm.title}}</h2>
-                                    <span>
-                                        <p>{{articleIfm.reply_count}}人次访问</p>
-                                        |
-                                        <p>{{articleIfm.visit_count}}条评论</p>
-                                    </span>
-                                    
-                                
+                                        </div>
+                                        <!-- 标题等信息 -->
+                                        <div class="titleAnd">
+                                            <h2>{{articleIfm.title}}</h2>
+                                            <span>
+                                                <p>{{articleIfm.reply_count}}人次访问</p>
+                                                |
+                                                <p>{{articleIfm.visit_count}}条评论</p>
+                                            </span>
+                                            
+                                        
 
-                                </div>
-                                <!-- 最后回复时间 -->
-                                <div class="time">
-                                    <p>{{articleIfm.last_reply_at}}</p>
+                                        </div>
+                                        <!-- 最后回复时间 -->
+                                        <div class="time">
+                                            <p>{{articleIfm.last_reply_at}}</p>
 
-                                </div>
-                            </li>
+                                        </div>
+                                    </router-link>
+                                </li>
+                            
                         </ul>
                     </div>
                     
@@ -105,6 +109,7 @@ export default {
     data(){
         return{
             allListData:[]
+            
 
         }
     },
@@ -117,6 +122,11 @@ export default {
                 console.log(response);
                 
                 console.log("加载完毕");
+                
+                let routerTo = { name: 'article', params: { id:this.id}};
+                console.log(routerTo.name);
+
+        
             
 
             })
@@ -127,7 +137,7 @@ export default {
         },
     mounted:
         function(){
-            alert("执行主页面js代码");
+            console.log("执行主页面js代码");
             var askLi = document.getElementById('askBlock').getElementsByTagName('li');
             // askLi[0].display.style = "none";
            
@@ -137,6 +147,7 @@ export default {
                 }
             }
         }
+        
     
    
     

@@ -30,7 +30,7 @@ import axios from 'axios';
 import md5 from 'js-md5';
 export default {
     mounted: function(){
-        alert("执行登录界面js代码");
+        console.log("执行登录界面js代码");
         
         var userName = document.getElementById('userName').value;
         var psw = document.getElementById('psw').value;
