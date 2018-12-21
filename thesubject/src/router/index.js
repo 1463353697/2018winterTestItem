@@ -8,6 +8,8 @@ import personIfm from '@/components/personIfm'
 import article from "@/components/article"
 import changeIfm from "@/components/changeIfm"
 
+
+
 Vue.use(Router)
 
 export default new Router({
