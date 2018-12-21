@@ -1,65 +1,71 @@
 <template>
     <div class="article">
         <div class="articleBlock">
+            <!-- 这里是有关文章发布的一些信息 -->
             <div class="head">
+                <h2>{{theArticle.title}}</h2>
                 
-                <h2>文章标题</h2>
-                <!-- 点开预览时要展示相应的文章，要通过文章相应的ID值来实现 -->
             
                 <div class="detailIfm">
                     <li>
-                        <span>发布于</span>
-                        <span>2天</span>
-                        <span>前 /</span>
+                       <img :src="theArticle.author.avatar_url">
+                        <span>发布于{{theArticle.create_at}}</span>
+                        
                     </li>
                     <li>
-                        <span>作者</span>
-                        <span>you /</span>
+                        <span>作者{{theArticle.author.loginname}}</span>
+                        
                     </li>
                     <li>
-                        <span>2018</span>
-                        <span>次浏览/</span>
+                        <span>{{theArticle.visit_count}}次浏览</span>
+                        
                     </li>
                 </div>
             </div>
 
             
             <!-- 这一块是文章的具体内容，要从接口里面获取 -->
-            <!-- 可以使用v-for绑定和vue模板来展示文章列表 -->
+            
             <div class="articleBlock">
-                <p>这是文章的具体内容</p>
+                <!-- 文章的具体内容 -->
+                <p v-html = "theArticle.content"></p>
 
             </div>
 
             <!-- 这是点赞评论区 -->
             <div>
-                <!-- 点赞数 -->
-                <div><p>365</p></div>
+                <!-- 点赞数，貌似文章没有点赞数 -->
+                <!-- <div><p>点赞数</p></div> -->
 
-                <!-- 添加评论 -->
-                <div class="yourComment">
+                <!-- 添加评论这一块暂时当做保留项目，有余力时可尝试 -->
+                <!-- <div class="yourComment">
                     <div class="imgBlock">
                         <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1583895718,339987571&fm=200&gp=0.jpg">
                         <p>说说你的看法</p>
                     </div>
                     <input>
                     <button>发表评论</button>
-                </div>
+                </div> -->
 
-                <!-- 评论列表 -->
+                <!-- 评论列表，这里通过v-for循环来实现 -->
                 <div class="comments">
-                    <div class="ifm">
-                        <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1583895718,339987571&fm=200&gp=0.jpg">
-                        <div class="detail">
-                            <p>name</p>
-                            <p>21天前</p>
-                            <p>点赞数</p>
-                        </div>
-                    </div>
-                    <!-- 评论的内容 -->
-                    <div class="words" >
-                        <p>这是评论的内容</p>
-                    </div>
+                    <ul>
+                        <li v-for="reply in theArticle.replies">
+                            <div class="ifm">
+                                <img :src="reply.author.avatar_url">
+                                <div class="detail">
+                                    <p>{{reply.author.loginname}}</p>
+                                    <p>{{reply.create_at}}</p>
+                                    <p>点赞数{{reply.ups.length}}</p>
+                                </div>
+                            </div>
+                            <!-- 评论的内容 -->
+                            <div class="words" >
+                                <p v-html="reply.content"></p>
+                                
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         
@@ -73,6 +79,7 @@ export default {
     data(){
         return{
             theArticle:"",
+            
             theId:this.$route.params.id
 
 
@@ -86,20 +93,22 @@ export default {
     created:
         function(){
             console.log(this.theId);
-           
-            // var theGet = "https://cnodejs.org/api/v1/topic/"+this.theId;
-            // axios.get(theGet)
-            // .then(response=>{
-            //     this.theArticle = response.data.data;
+            var requestId = this.theId;
+            var theGet = "https://cnodejs.org/api/v1/topic/"+requestId;
+            axios.get(theGet)
+            .then(response=>{
+                this.theArticle = response.data.data;
+               
+                console.log(response);
 
-            // })
-            // .catch(error=>{
-            //     console.log(error);
-            // })
+            })
+            .catch(error=>{
+                console.log(error);
+            })
         },
     mounted:
         function(){
-            var theGet = "https://cnodejs.org/api/v1/topic/:"+this.$route.params.id;
+            // var theGet = "https://cnodejs.org/api/v1/topic/:"+this.$route.params.id;
         }
     
     
@@ -112,18 +121,18 @@ export default {
         
     }
     .articleBlock {
-        width: 70%;
+        width: 100%;
         display: flex;
         flex-direction: column;
             
             
-        background-color: yellow;
+        
     }
     .articleBlock .head {
         width:100%;
         display: flex;
         flex-direction: column;
-        background-color: pink;
+       
     }
     .detailIfm {
         display: flex;
@@ -134,6 +143,12 @@ export default {
     .detailIfm li {
         display: flex;
         margin-right: 20px;
+    }
+    .detailIfm img {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+
     }
     .yourComment .imgBlock {
         display: flex;
