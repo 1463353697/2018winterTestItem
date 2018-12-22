@@ -29,6 +29,12 @@ import jsonp from 'jsonp';
 import axios from 'axios';
 import md5 from 'js-md5';
 export default {
+    data(){
+        return{
+            
+
+        }
+    },
     mounted: function(){
         console.log("执行登录界面js代码");
         var enterBtn = document.getElementById('enterBtn');
@@ -59,7 +65,16 @@ export default {
                     console.log(data);
                     if(data.data.err_code == 0){
                         alert("登录成功");
-                        return data.data.uuid;
+                        // 这里把获取到的uuid和token变成全局变量
+                        (function(){
+                            var uuid = data.data.uuid;
+                            var token = data.data.token;
+                            window.uuid = uuid;
+                            window.token = token;
+                        })();
+
+                        
+                        
                     }
                     if(data.data.err_code == 1){
                         alert(data.data.err_msg);
@@ -68,6 +83,8 @@ export default {
                 }
             })
         }
+        
+        
     
     }
 }

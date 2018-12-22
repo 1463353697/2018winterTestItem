@@ -85,11 +85,7 @@ export default {
 
         }
     },
-    computed:{
-        getId(){
-            return this.$route.params.id;
-        }
-    },
+    
     created:
         function(){
             console.log(this.theId);
