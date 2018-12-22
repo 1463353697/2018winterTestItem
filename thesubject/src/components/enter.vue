@@ -31,16 +31,24 @@ import md5 from 'js-md5';
 export default {
     mounted: function(){
         console.log("执行登录界面js代码");
-        
-        var userName = document.getElementById('userName').value;
-        var psw = document.getElementById('psw').value;
-        var pswMd5 = md5(psw);
         var enterBtn = document.getElementById('enterBtn');
         
+        // var userName = document.getElementById('userName').value;
+        // var psw = document.getElementById('psw').value;
+        // var pswMd5 = md5(psw);
+        // var enterBtn = document.getElementById('enterBtn');
         
-        var theRequest = "http://hb9.api.okayapi.com/?s=App.User.Login&app_key=E0A52635859871C072A9B440A8352D61&username="+userName+"&password="+pswMd5;
+        
+        
         enterBtn.onclick = function(){
             //用户名没办法正确上传，导致登录失败
+            
+            var userName = document.getElementById('userName').value;
+            var psw = document.getElementById('psw').value;
+            var pswMd5 = md5(psw);
+            
+            var theRequest = "http://hb9.api.okayapi.com/?s=App.User.Login&app_key=E0A52635859871C072A9B440A8352D61&username="
+            +userName+"&password="+pswMd5;
             console.log(psw);
             console.log(userName);
             console.log(pswMd5);

@@ -107,10 +107,11 @@ export default {
                 var userNameCheck = checkUsername();
                 var psw1Check = checkPsw1();
                 var psw2Check = checkPsw2();
-                // this.psw = md5(enterInput[5].value);
+               
                 var username = enterInput[0].value;
                 var psw = enterInput[2].value;
                 var pswMd5 = md5(psw);
+                console.log(username);
                 console.log(psw);
                 console.log(pswMd5);
                

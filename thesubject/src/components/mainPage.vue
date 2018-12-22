@@ -36,6 +36,11 @@
                                             <p>{{articleIfm.last_reply_at}}</p>
 
                                         </div>
+
+                                        <!-- 文章内容预览 -->
+                                        <!-- <div>
+                                            <p v-html="articleIfm.content"></p>
+                                        </div> -->
                                     </router-link>
                                 </li>
                             
@@ -49,33 +54,35 @@
                     <div  class="mainBlock">
                         <ul id="askBlock">
                             <li class="articles" v-for="articleIfm in askData">
-                                <!-- 作者头像 -->
-                                <div>
-                                    <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                    <img class="lazy" :src="articleIfm.author.avatar_url"> 
-                                </div>
-                                <!-- 分类和置顶 -->
-                                <div class="tags">
-                                    <button>{{articleIfm.tab}}</button>
+                                <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                    <!-- 作者头像 -->
+                                    <div>
+                                        <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                    </div>
+                                    <!-- 分类和置顶 -->
+                                    <div class="tags">
+                                        <button>{{articleIfm.tab}}</button>
 
-                                </div>
-                                <!-- 标题等信息 -->
-                                <div class="titleAnd">
-                                    <h2>{{articleIfm.title}}</h2>
-                                    <span>
-                                        <p>{{articleIfm.reply_count}}人次访问</p>
-                                        |
-                                        <p>{{articleIfm.visit_count}}条评论</p>
-                                    </span>
+                                    </div>
+                                    <!-- 标题等信息 -->
+                                    <div class="titleAnd">
+                                        <h2>{{articleIfm.title}}</h2>
+                                        <span>
+                                            <p>{{articleIfm.reply_count}}人次访问</p>
+                                            |
+                                            <p>{{articleIfm.visit_count}}条评论</p>
+                                        </span>
+                                        
                                     
-                                
 
-                                </div>
-                                <!-- 最后回复时间 -->
-                                <div class="time">
-                                    <p>{{articleIfm.last_reply_at}}</p>
+                                    </div>
+                                    <!-- 最后回复时间 -->
+                                    <div class="time">
+                                        <p>{{articleIfm.last_reply_at}}</p>
 
-                                </div>
+                                    </div>
+                                </router-link>
                             </li>
                         </ul>
                     </div>
@@ -87,33 +94,35 @@
                     <div  class="mainBlock">
                         <ul >
                             <li class="articles" v-for="articleIfm in shareData">
-                                <!-- 作者头像 -->
-                                <div>
-                                    <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                    <img class="lazy" :src="articleIfm.author.avatar_url"> 
-                                </div>
-                                <!-- 分类和置顶 -->
-                                <div class="tags">
-                                    <button>{{articleIfm.tab}}</button>
+                                <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                    <!-- 作者头像 -->
+                                    <div>
+                                        <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                    </div>
+                                    <!-- 分类和置顶 -->
+                                    <div class="tags">
+                                        <button>{{articleIfm.tab}}</button>
 
-                                </div>
-                                <!-- 标题等信息 -->
-                                <div class="titleAnd">
-                                    <h2>{{articleIfm.title}}</h2>
-                                    <span>
-                                        <p>{{articleIfm.reply_count}}人次访问</p>
-                                        |
-                                        <p>{{articleIfm.visit_count}}条评论</p>
-                                    </span>
+                                    </div>
+                                    <!-- 标题等信息 -->
+                                    <div class="titleAnd">
+                                        <h2>{{articleIfm.title}}</h2>
+                                        <span>
+                                            <p>{{articleIfm.reply_count}}人次访问</p>
+                                            |
+                                            <p>{{articleIfm.visit_count}}条评论</p>
+                                        </span>
+                                        
                                     
-                                
 
-                                </div>
-                                <!-- 最后回复时间 -->
-                                <div class="time">
-                                    <p>{{articleIfm.last_reply_at}}</p>
+                                    </div>
+                                    <!-- 最后回复时间 -->
+                                    <div class="time">
+                                        <p>{{articleIfm.last_reply_at}}</p>
 
-                                </div>
+                                    </div>
+                                </router-link>
                             </li>
                         </ul>
                     </div>
@@ -124,33 +133,35 @@
                     <div  class="mainBlock">
                         <ul >
                             <li class="articles" v-for="articleIfm in jobData">
-                                <!-- 作者头像 -->
-                                <div>
-                                    <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                    <img class="lazy" :src="articleIfm.author.avatar_url"> 
-                                </div>
-                                <!-- 分类和置顶 -->
-                                <div class="tags">
-                                    <button>{{articleIfm.tab}}</button>
+                                <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                    <!-- 作者头像 -->
+                                    <div>
+                                        <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                    </div>
+                                    <!-- 分类和置顶 -->
+                                    <div class="tags">
+                                        <button>{{articleIfm.tab}}</button>
 
-                                </div>
-                                <!-- 标题等信息 -->
-                                <div class="titleAnd">
-                                    <h2>{{articleIfm.title}}</h2>
-                                    <span>
-                                        <p>{{articleIfm.reply_count}}人次访问</p>
-                                        |
-                                        <p>{{articleIfm.visit_count}}条评论</p>
-                                    </span>
+                                    </div>
+                                    <!-- 标题等信息 -->
+                                    <div class="titleAnd">
+                                        <h2>{{articleIfm.title}}</h2>
+                                        <span>
+                                            <p>{{articleIfm.reply_count}}人次访问</p>
+                                            |
+                                            <p>{{articleIfm.visit_count}}条评论</p>
+                                        </span>
+                                        
                                     
-                                
 
-                                </div>
-                                <!-- 最后回复时间 -->
-                                <div class="time">
-                                    <p>{{articleIfm.last_reply_at}}</p>
+                                    </div>
+                                    <!-- 最后回复时间 -->
+                                    <div class="time">
+                                        <p>{{articleIfm.last_reply_at}}</p>
 
-                                </div>
+                                    </div>
+                                </router-link>
                             </li>
                         </ul>
                     </div>
@@ -162,34 +173,37 @@
                     <div  class="mainBlock">
                         <ul >
                             <li class="articles" v-for="articleIfm in goodData">
-                                <!-- 作者头像 -->
-                                <div>
-                                    <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                    <img class="lazy" :src="articleIfm.author.avatar_url"> 
-                                </div>
-                                <!-- 分类和置顶 -->
-                                <div class="tags">
-                                    <button>{{articleIfm.tab}}</button>
+                                <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                    <!-- 作者头像 -->
+                                    <div>
+                                        <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                    </div>
+                                    <!-- 分类和置顶 -->
+                                    <div class="tags">
+                                        <button>{{articleIfm.tab}}</button>
 
-                                </div>
-                                <!-- 标题等信息 -->
-                                <div class="titleAnd">
-                                    <h2>{{articleIfm.title}}</h2>
-                                    <span>
-                                        <p>{{articleIfm.reply_count}}人次访问</p>
-                                        |
-                                        <p>{{articleIfm.visit_count}}条评论</p>
-                                    </span>
+                                    </div>
+                                    <!-- 标题等信息 -->
+                                    <div class="titleAnd">
+                                        <h2>{{articleIfm.title}}</h2>
+                                        <span>
+                                            <p>{{articleIfm.reply_count}}人次访问</p>
+                                            |
+                                            <p>{{articleIfm.visit_count}}条评论</p>
+                                        </span>
+                                        
                                     
-                                
 
-                                </div>
-                                <!-- 最后回复时间 -->
-                                <div class="time">
-                                    <p>{{articleIfm.last_reply_at}}</p>
+                                    </div>
+                                    <!-- 最后回复时间 -->
+                                    <div class="time">
+                                        <p>{{articleIfm.last_reply_at}}</p>
 
-                                </div>
+                                    </div>
+                                </router-link>
                             </li>
+                            
                         </ul>
                     </div>
                     
@@ -236,47 +250,34 @@ export default {
                 let shareData = [];
                 let goodData = [];
                 let jobData = [];
-                console.log(routerTo.name);
-
+                // console.log(routerTo.name);
+                // 循环获取到的数据，筛选类别，放入不同的数组
                 for(var i = 0; i<this.allListData.length;i++){
                     if(this.allListData[i].tab=="ask"){
                         askData.push(this.allListData[i]);
-
                     }
-                    
-                }
-                console.log(askData);
-                this.askData = askData;
 
-                for(var i = 0; i<this.allListData.length;i++){
                     if(this.allListData[i].tab=="share"){
                         shareData.push(this.allListData[i]);
-
                     }
-                    
-                }
-                console.log(shareData);
-                this.shareData = shareData;
 
-
-                for(var i = 0; i<this.allListData.length;i++){
                     if(this.allListData[i].tab=="job"){
                         jobData.push(this.allListData[i]);
-
                     }
-                    
-                }
-                console.log(jobData);
-                this.jobData = jobData;
 
-                for(var i = 0; i<this.allListData.length;i++){
-                    if(this.allListData[i].good == true){
+                     if(this.allListData[i].good == true){
                         goodData.push(this.allListData[i]);
-
                     }
+
+
                     
                 }
-                console.log(goodData);
+
+                //将数组赋给相应插值的数据
+                
+                this.askData = askData;              
+                this.shareData = shareData;
+                this.jobData = jobData;
                 this.goodData = goodData;
                 
 
@@ -321,13 +322,25 @@ export default {
     
 </script>
 <style>
-    .el-tabs__item {
-        padding: 0px 50px !important;
-
+    /* .el-tabs__nav {
+        text-align: center !important;
     }
+    .el-tabs__nav-wrap::after {
+        width: 100%;
+    }
+    .el-tabs__item {
+        padding: 0px 8% !important;
+       
+
+
+    } */
 
 </style>
 <style scoped>
+    .mainBlock a {
+        display:flex;
+        color:black;
+    }
     .mainPage {
         display: flex;
         justify-content: center;
@@ -384,6 +397,7 @@ export default {
     .titleAnd {
         margin:10px 20px;
     }
+    
     .titleAnd span {
         margin-top:10px;
         display: flex;
