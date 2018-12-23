@@ -27,8 +27,17 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'jquery':'jquery'//这里是用bootstrap时增加的
     }
   },
+  //这里也是用bootstrap时增加的
+  plugins:[
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "windows.jQuery": "jquery"
+    })
+  ],
   module: {
     rules: [
       {

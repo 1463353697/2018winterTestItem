@@ -4,7 +4,7 @@
             <div class="headAndname">
                 <img src="http://image.biaobaiju.com/uploads/20180802/01/1533145434-yGPirmnoVd.jpg" >
                 <div class="introdution">
-                    <h1 id="personName">{{ucIfm.username}}</h1>
+                    <h2 id="personName">{{ucIfm.username}}</h2>
                     <p id="personSl">{{ifm.sign}}</p>       
                 </div>
             </div>  
@@ -104,7 +104,14 @@ import jsonp from 'jsonp';
 export default {
     data(){
         return{
-            ifm:{},
+            ifm:{
+                age:'',
+                place:'',
+                email:'',
+                sex:'',
+                sign:'',
+                phone:''
+            },
             ucIfm:{}
             
         }
@@ -121,7 +128,7 @@ export default {
             btn.onclick = function(){
                 changeBlock.style.display = "block";
                 showIfm.style.filter = "opacity(50%)";
-                showIfm.style.backgroundColor = "grey";
+                
                 
             } 
             var sureChange = document.getElementById('sureChange');
@@ -133,24 +140,17 @@ export default {
                 var sex = document.getElementById('sex').value;
                 var sign = document.getElementById('sign');
                 var phone = document.getElementById('phone').value;
-                this.age = age;
-                this.place = place;
-                this.email = email;
-                this.sex = sex;
-                this.phone = phone;
-                console.log(phone);
-                console.log(typeof phone);
-                var ifmChanged = 
-                [
-                    {
-                        age : age,
-                        location : place,
-                        email : email,
-                        sex : sex,
-                        sign : sign,
-                        phone : phone
-                    }
-                ]
+                
+                
+                var ifmChanged = {
+                    age : age,
+                    location : place,
+                    email : email,
+                    sex : sex,
+                    sign : sign,
+                    phone : phone
+                }
+                
                 var ifmJson = JSON.stringify(ifmChanged);
                 
                 var theRequest = "http://hb9.api.okayapi.com/?s=App.User.UpdateExtInfo&app_key=E0A52635859871C072A9B440A8352D61"+
@@ -161,16 +161,16 @@ export default {
                     }
                     else{
                         console.log(data.data.ext_info);
-                        //修改资料之后不能用v-model双向绑定，不然刷新之后表单里的数据是空的，那修改的资料就没有了
-                        // this.ifm = data.data.ext_info[data.data.ext_info.length-1];
-                        // console.log(this.ifm);
-                        (function(){
-                            var thePersonIfm = data.data.ext_info[data.data.ext_info.length-1];
+                        
+                        
                            
-                            window.thePersonIfm = thePersonIfm;
+                        
+                       (function(){
+                           var thePersonIfm = data.data.ext_info;
+                           window.thePersonIfm = thePersonIfm;
+                            
                         })();
-                        this.ifm = thePersonIfm;
-                        console.log(this.ifm);
+                        
                         
 
                     }
@@ -181,10 +181,19 @@ export default {
             var over = document.getElementById('over');
             over.onclick = function(){
                 changeBlock.style.display = "none";
-                showIfm.style.backgroundColor = "#fff";
+                showIfm.style.filter = "opacity(1)";
+               
+                this.ifm = thePersonIfm;
                 console.log(this.ifm);
+                console.log(this.ifm.age);
+                console.log(this.ifm.phone);
+               
+                
+                
 
             }
+            
+            
             
             
             
@@ -200,7 +209,7 @@ export default {
                     console.log(err);
                 }
                 else{
-                    
+                    console.log(data);
                     var unChangeIfm = data.data.info;
                    
                     this.ucIfm = unChangeIfm;
@@ -226,7 +235,7 @@ export default {
     .personBlock {
         position: relative;
         
-        width:900px;
+        width:88%;
 
     }
     .headAndname {
@@ -241,7 +250,7 @@ export default {
 
     }
     .introdution {
-        margin-left: 20px;
+        margin-left: 2%;
         display: flex;
         flex-direction: column;
 
@@ -249,7 +258,7 @@ export default {
 
     }
     .detailIfm {
-        margin-top: 35px;
+        margin-top: 10%;
         border:solid 1px rgb(195, 227, 236);
     }
     
@@ -257,8 +266,8 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        font-size: 20px; 
-        margin:20px 30px;
+        /* font-size: 20px;  */
+        margin: 1% 5%;
        
     }
     .detailIfmBlock span {

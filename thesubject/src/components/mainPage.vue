@@ -1,4 +1,6 @@
 <template>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+
     <div class="mainPage">
         <div class="nav">
             <el-tabs>
@@ -175,11 +177,20 @@
     
 </template>
 
+ 
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+ 
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 
 // import lazyload from "jquery-lazyload";
 import axios from "axios";
 import underscore from "underscore";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/js/bootstrap.min.js';
+
 export default {
     data(){
         return{
