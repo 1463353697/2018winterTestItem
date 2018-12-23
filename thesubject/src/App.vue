@@ -7,7 +7,7 @@
       
       <router-link to="/mainPage">进入论坛</router-link>
       <router-link to="/personIfm">个人中心</router-link>
-      <router-link to="/article">文章</router-link>
+      
     </div>
    
     <router-view></router-view>

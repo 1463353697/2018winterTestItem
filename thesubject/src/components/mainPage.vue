@@ -3,7 +3,7 @@
         <div class="nav">
             <el-tabs>
                 <el-tab-pane label= "全部">
-                    全部
+                   
                     <div class="mainBlock">
                         <ul>
                             
@@ -15,27 +15,25 @@
                                             <img class="lazy" :src="articleIfm.author.avatar_url"> 
                                         </div>
                                         <!-- 分类和置顶 -->
-                                        <div class="tags">
-                                            <button>{{articleIfm.tab}}</button>
-
-                                        </div>
+                                        
                                         <!-- 标题等信息 -->
                                         <div class="titleAnd">
-                                            <h2>{{articleIfm.title}}</h2>
+                                            <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
                                             <span>
                                                 <p>{{articleIfm.reply_count}}人次访问</p>
                                                 |
                                                 <p>{{articleIfm.visit_count}}条评论</p>
+                                                <p>{{articleIfm.last_reply_at}}</p>
                                             </span>
                                             
                                         
 
                                         </div>
                                         <!-- 最后回复时间 -->
-                                        <div class="time">
+                                        <!-- <div class="time">
                                             <p>{{articleIfm.last_reply_at}}</p>
 
-                                        </div>
+                                        </div> -->
 
                                         <!-- 文章内容预览 -->
                                         <!-- <div>
@@ -50,7 +48,7 @@
                 </el-tab-pane>
                 <el-tab-pane  label= "问答">
 
-                    问答
+                    
                     <div  class="mainBlock">
                         <ul id="askBlock">
                             <li class="articles" v-for="articleIfm in askData">
@@ -61,27 +59,28 @@
                                         <img class="lazy" :src="articleIfm.author.avatar_url"> 
                                     </div>
                                     <!-- 分类和置顶 -->
-                                    <div class="tags">
-                                        <button>{{articleIfm.tab}}</button>
-
-                                    </div>
+                                    
                                     <!-- 标题等信息 -->
                                     <div class="titleAnd">
-                                        <h2>{{articleIfm.title}}</h2>
+                                        <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
+                                        
+
+                                    
                                         <span>
                                             <p>{{articleIfm.reply_count}}人次访问</p>
                                             |
                                             <p>{{articleIfm.visit_count}}条评论</p>
+                                            <p>{{articleIfm.last_reply_at}}</p>
                                         </span>
                                         
                                     
 
                                     </div>
                                     <!-- 最后回复时间 -->
-                                    <div class="time">
+                                    <!-- <div class="time">
                                         <p>{{articleIfm.last_reply_at}}</p>
 
-                                    </div>
+                                    </div> -->
                                 </router-link>
                             </li>
                         </ul>
@@ -90,7 +89,7 @@
                     
                 </el-tab-pane>
                 <el-tab-pane label= "分享">
-                    分享
+                    
                     <div  class="mainBlock">
                         <ul >
                             <li class="articles" v-for="articleIfm in shareData">
@@ -101,75 +100,35 @@
                                         <img class="lazy" :src="articleIfm.author.avatar_url"> 
                                     </div>
                                     <!-- 分类和置顶 -->
-                                    <div class="tags">
-                                        <button>{{articleIfm.tab}}</button>
-
-                                    </div>
+                                    
                                     <!-- 标题等信息 -->
                                     <div class="titleAnd">
-                                        <h2>{{articleIfm.title}}</h2>
+                                        <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
                                         <span>
                                             <p>{{articleIfm.reply_count}}人次访问</p>
                                             |
                                             <p>{{articleIfm.visit_count}}条评论</p>
+                                            <p>{{articleIfm.last_reply_at}}</p>
                                         </span>
                                         
                                     
 
                                     </div>
                                     <!-- 最后回复时间 -->
-                                    <div class="time">
+                                    <!-- <div class="time">
                                         <p>{{articleIfm.last_reply_at}}</p>
 
-                                    </div>
+                                    </div> -->
                                 </router-link>
                             </li>
                         </ul>
                     </div>
                     
                 </el-tab-pane>
-                <el-tab-pane label= "招聘">
-                    招聘
-                    <div  class="mainBlock">
-                        <ul >
-                            <li class="articles" v-for="articleIfm in jobData">
-                                <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
-                                    <!-- 作者头像 -->
-                                    <div>
-                                        <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
-                                    </div>
-                                    <!-- 分类和置顶 -->
-                                    <div class="tags">
-                                        <button>{{articleIfm.tab}}</button>
-
-                                    </div>
-                                    <!-- 标题等信息 -->
-                                    <div class="titleAnd">
-                                        <h2>{{articleIfm.title}}</h2>
-                                        <span>
-                                            <p>{{articleIfm.reply_count}}人次访问</p>
-                                            |
-                                            <p>{{articleIfm.visit_count}}条评论</p>
-                                        </span>
-                                        
-                                    
-
-                                    </div>
-                                    <!-- 最后回复时间 -->
-                                    <div class="time">
-                                        <p>{{articleIfm.last_reply_at}}</p>
-
-                                    </div>
-                                </router-link>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                </el-tab-pane>
+                
                 <el-tab-pane label= "精华">
 
-                    精华
+                    
                     <div  class="mainBlock">
                         <ul >
                             <li class="articles" v-for="articleIfm in goodData">
@@ -180,27 +139,25 @@
                                         <img class="lazy" :src="articleIfm.author.avatar_url"> 
                                     </div>
                                     <!-- 分类和置顶 -->
-                                    <div class="tags">
-                                        <button>{{articleIfm.tab}}</button>
-
-                                    </div>
+                                    
                                     <!-- 标题等信息 -->
                                     <div class="titleAnd">
-                                        <h2>{{articleIfm.title}}</h2>
+                                        <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
                                         <span>
                                             <p>{{articleIfm.reply_count}}人次访问</p>
                                             |
                                             <p>{{articleIfm.visit_count}}条评论</p>
+                                            <p>{{articleIfm.last_reply_at}}</p>
                                         </span>
                                         
                                     
 
                                     </div>
                                     <!-- 最后回复时间 -->
-                                    <div class="time">
+                                    <!-- <div class="time">
                                         <p>{{articleIfm.last_reply_at}}</p>
 
-                                    </div>
+                                    </div> -->
                                 </router-link>
                             </li>
                             
@@ -307,18 +264,6 @@ export default {
     
 }
 
-    // window.onload = function(){
-    //     var askLi = document.getElementById('askBlock').getElementsByTagName('li');
-    //     for(var i = 0; i<askLi.length;i++){
-    //         if(this.allListData[i].tab != "ask"){
-    //             askLi[i].style.display = "none";
-    //         }
-    //     }
-    //     $(function(){
-    //         $("img.lazy").lazyload();
-    //     })
-
-    // }
     
 </script>
 <style>
@@ -327,13 +272,24 @@ export default {
     }
     .el-tabs__nav-wrap::after {
         width: 100%;
-    }
-    .el-tabs__item {
-        padding: 0px 8% !important;
+    } */
+    /* .el-tabs__item {
+        padding: 0px 11% !important;
        
 
 
     } */
+    .el-tabs__active-bar {
+        width: 20% !important;
+    }
+    .el-tabs__content {
+        padding: 0px 40px !important;
+    }
+    .el-tabs__item {
+        padding: 0 60px !important;
+    }
+
+    
 
 </style>
 <style scoped>
@@ -343,34 +299,39 @@ export default {
     }
     .mainPage {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start ;
         flex-wrap: wrap;
 
     }
     .nav {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         width: 100%;
         /* background-color: rgb(68, 124, 170); */
         
     }
-    /* 这里记得修改组件的样式 */
-   /* el-tabs  {    
-        color: #ffffff;
-        padding: 80px 45px;  
-    }
-    .nav el-tabs:hover{
-        background-color: rgb(237, 227, 241);
-        color: black;
-    } */
+    
     .mainBlock {
         
         margin-top: 45px;
         width: 100%;
+        /* border: 1px solid rgb(200, 194, 194);
+        border-radius: 5px; */
+        /* background-color: pink; */
+        
+    }
+    .mainBlock li{
+        display:block;
+        width:100%;
         border: 1px solid rgb(200, 194, 194);
         border-radius: 5px;
-        /* background-color: pink; */
+        margin-bottom: 5px;
+        
+        
+    }
+    .mainBlock {
+        display:block;
         
     }
     .articles {
@@ -388,12 +349,12 @@ export default {
         height: 80px;
         border-radius: 20px;
     }
-    .articles .tags button {
+    /* .articles .tags button {
         padding: 8px 10px;
         background-color: rgb(68, 124, 170);
         color: #ffffff;
         border: 0px;
-    }
+    } */
     .titleAnd {
         margin:10px 20px;
     }
@@ -401,6 +362,15 @@ export default {
     .titleAnd span {
         margin-top:10px;
         display: flex;
+    }
+    .titleAnd button {
+        padding: 8px 10px;
+        margin-left: 5px;
+        background-color: rgb(68, 124, 170);
+        color: #ffffff;
+        border: 1px;
+        border-radius: 5px;
+
     }
     .titleAnd span p{
         margin: 0px 5px;

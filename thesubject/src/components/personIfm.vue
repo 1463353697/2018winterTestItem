@@ -67,12 +67,12 @@
                 <div>
                        
                     <h4>所在地</h4>
-                    <input id="place">
+                    <input  id="place">
                 </div>
                 <div>
                        
                     <h4>邮箱</h4>
-                    <input id="email">
+                    <input  id="email">
                 </div>
                 <div>
                         
@@ -83,7 +83,7 @@
                         
                     <!-- 注意这里的个性签名和introdution里的个性签名获取的是同一个数据 -->
                     <h4>个性签名</h4>
-                    <textarea id="sign"></textarea>
+                    <textarea  id="sign"></textarea>
                 </div>
                 <div>
                        
@@ -91,8 +91,8 @@
                     <input id="phone">
                 </div>
                 <div id="changeIfmBtn">
-                    <button id="changeBtn">修改</button>
-                    <button id="cancel">取消</button>
+                    <button id="sureChange">修改</button>
+                    <button id="over">完成</button>
                 </div>
             </div>
         </div>
@@ -106,6 +106,7 @@ export default {
         return{
             ifm:{},
             ucIfm:{}
+            
         }
     },
     mounted:
@@ -123,24 +124,35 @@ export default {
                 showIfm.style.backgroundColor = "grey";
                 
             } 
-            var changeBtn = document.getElementById('changeBtn');
-            changeBtn.onclick = function (){
+            var sureChange = document.getElementById('sureChange');
+            sureChange.onclick = function (){
                 // 记得点击事件之后再获取
                 var age = document.getElementById('age').value;
                 var place = document.getElementById('place').value;
                 var email = document.getElementById('email').value;
-                var sex = document.getElementById('sign').value;
+                var sex = document.getElementById('sex').value;
+                var sign = document.getElementById('sign');
                 var phone = document.getElementById('phone').value;
-                var ifmJson = [
+                this.age = age;
+                this.place = place;
+                this.email = email;
+                this.sex = sex;
+                this.phone = phone;
+                console.log(phone);
+                console.log(typeof phone);
+                var ifmChanged = 
+                [
                     {
-                        "age" : age,
-                        "location" : place,
-                        "email" : email,
-                        "sex" : sex,
-                        "sign" : sign,
-                        "phone" : phone
+                        age : age,
+                        location : place,
+                        email : email,
+                        sex : sex,
+                        sign : sign,
+                        phone : phone
                     }
                 ]
+                var ifmJson = JSON.stringify(ifmChanged);
+                
                 var theRequest = "http://hb9.api.okayapi.com/?s=App.User.UpdateExtInfo&app_key=E0A52635859871C072A9B440A8352D61"+
                 "&uuid="+uuid+"&token="+token+"&ext_info="+ifmJson;
                 jsonp(theRequest,null,(err,data) => {
@@ -148,49 +160,31 @@ export default {
                         console.log(err);
                     }
                     else{
-                        // if(data.err_code != 0){
-                        //     alert(data.err_msg);
-                        // }
-                        console.log(data);
+                        console.log(data.data.ext_info);
+                        //修改资料之后不能用v-model双向绑定，不然刷新之后表单里的数据是空的，那修改的资料就没有了
+                        // this.ifm = data.data.ext_info[data.data.ext_info.length-1];
+                        // console.log(this.ifm);
+                        (function(){
+                            var thePersonIfm = data.data.ext_info[data.data.ext_info.length-1];
+                           
+                            window.thePersonIfm = thePersonIfm;
+                        })();
+                        this.ifm = thePersonIfm;
+                        console.log(this.ifm);
+                        
 
                     }
                 }) 
+                 
 
             }
-            // 这个函数是在修改用户资料
-            // function changeIfm(){
-            //     // 记得点击事件之后再获取
-            //     var age = document.getElementById('age').value;
-            //     var place = document.getElementById('place').value;
-            //     var email = document.getElementById('email').value;
-            //     var sex = document.getElementById('sign').value;
-            //     var phone = document.getElementById('phone').value;
-            //     var ifmJson = [
-            //         {
-            //             "age" : age,
-            //             "location" : place,
-            //             "email" : email,
-            //             "sex" : sex,
-            //             "sign" : sign,
-            //             "phone" : phone
-            //         }
-            //     ]
-            //     var theRequest = "http://hb9.api.okayapi.com/?s=App.User.UpdateExtInfo&app_key=E0A52635859871C072A9B440A835D61"+
-            //     "&uuid="+uuid+"&token="+token+"&ext_info="+ifmJson;
-            //     jsonp(theRequest,null,(err,data) => {
-            //         if(err){
-            //             console.log(err);
-            //         }
-            //         else{
-            //             if(err_code != 0){
-            //                 alert(err_msg);
-            //             }
-            //             console.log(data);
+            var over = document.getElementById('over');
+            over.onclick = function(){
+                changeBlock.style.display = "none";
+                showIfm.style.backgroundColor = "#fff";
+                console.log(this.ifm);
 
-            //         }
-            //     }) 
-
-            // }
+            }
             
             
             
@@ -206,9 +200,9 @@ export default {
                     console.log(err);
                 }
                 else{
-                    var personIfm = data.data.info.ext_info;
+                    
                     var unChangeIfm = data.data.info;
-                    this.ifm = personIfm;
+                   
                     this.ucIfm = unChangeIfm;
                     
                     

@@ -8,7 +8,10 @@
             
                 <div class="detailIfm">
                     <li>
-                       <img :src="theArticle.author.avatar_url">
+                        <img :src="theArticle.author.avatar_url">
+                    </li>
+                    <li>
+                       
                         <span>发布于{{theArticle.create_at}}</span>
                         
                     </li>
@@ -132,6 +135,7 @@ export default {
     }
     .detailIfm {
         display: flex;
+        align-items: center;
             
         /* margin: 8px 10px; */
  
@@ -139,10 +143,11 @@ export default {
     .detailIfm li {
         display: flex;
         margin-right: 20px;
+        margin: 20px 0px;
     }
     .detailIfm img {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         border-radius: 20px;
 
     }
@@ -179,6 +184,8 @@ export default {
     }
     .comments .words {
         margin-top: 10px;
+        margin-left: 50px;
+        
     }
         
 
