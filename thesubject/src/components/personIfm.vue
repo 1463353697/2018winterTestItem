@@ -77,7 +77,10 @@
                 <div>
                         
                     <h4>性别</h4>
-                    <input id="sex">
+                    <label>
+                        <input type="radio" id="male" value="男">
+                        <input type="radio" id="female" value="女">
+                    </label>
                 </div>
                 <div>
                         
@@ -91,7 +94,7 @@
                     <input id="phone">
                 </div>
                 <div id="changeIfmBtn">
-                    <button id="sureChange">修改</button>
+                    <button id="sureChange" @click="sureChangeClick()">修改</button>
                     <button id="over">完成</button>
                 </div>
             </div>
@@ -116,28 +119,23 @@ export default {
             
         }
     },
-    mounted:
-        function(){
-            
-            // 这里是点击修改资料之后，弹出修改资料的框
-            var btn = document.getElementById('changeBtn');
-            // 这是展示个人信息的板块
-            var showIfm = document.getElementById('showIfm');
-
-            var changeBlock = document.getElementById('changeBlock');
-            btn.onclick = function(){
-                changeBlock.style.display = "block";
-                showIfm.style.filter = "opacity(50%)";
-                
-                
-            } 
-            var sureChange = document.getElementById('sureChange');
-            sureChange.onclick = function (){
-                // 记得点击事件之后再获取
+    methods:{
+        //这是点击修改按钮后调用的事件
+        sureChangeClick(){
+             // 获取修改后的信息
                 var age = document.getElementById('age').value;
                 var place = document.getElementById('place').value;
                 var email = document.getElementById('email').value;
-                var sex = document.getElementById('sex').value;
+                var sex = function(){
+                    let male = document.getElementById('male').checked;
+                    let female = document.getElementById('famale').checked;
+                    if(male == true){
+                        return "男";
+                    }
+                    else{
+                        return "女";
+                    }
+                }
                 var sign = document.getElementById('sign');
                 var phone = document.getElementById('phone').value;
                 
@@ -160,38 +158,50 @@ export default {
                         console.log(err);
                     }
                     else{
-                        console.log(data.data.ext_info);
+                        
+                        this.ifm = data.data.ext_info;
                         
                         
                            
-                        
-                       (function(){
-                           var thePersonIfm = data.data.ext_info;
-                           window.thePersonIfm = thePersonIfm;
-                            
-                        })();
+                   
                         
                         
 
                     }
                 }) 
-                 
 
-            }
+
+        },
+
+
+
+    },
+    mounted:
+        function(){
+            
+            
+            var btn = document.getElementById('changeBtn');
+            // 这是展示个人信息的板块
+            var showIfm = document.getElementById('showIfm');
+
+            //这个是默认为不可见的修改信息的板块
+            var changeBlock = document.getElementById('changeBlock');
+
+            //点击修改信息之后，让修改信息的板块可见
+            btn.onclick = function(){
+                changeBlock.style.display = "block";
+                showIfm.style.filter = "opacity(50%)";
+                
+                
+            } 
+           
+           //修改完成之后，再隐藏修改信息的板块
             var over = document.getElementById('over');
             over.onclick = function(){
                 changeBlock.style.display = "none";
                 showIfm.style.filter = "opacity(1)";
-               
-                this.ifm = thePersonIfm;
-                console.log(this.ifm);
-                console.log(this.ifm.age);
-                console.log(this.ifm.phone);
-               
-                
-                
-
             }
+           
             
             
             
