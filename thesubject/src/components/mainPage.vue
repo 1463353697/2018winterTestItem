@@ -14,7 +14,7 @@
                                         <!-- 作者头像 -->
                                         <div>
                                             <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                            <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                            <img  :src="articleIfm.author.avatar_url"> 
                                         </div>
                                         <!-- 分类和置顶 -->
                                         
@@ -31,16 +31,7 @@
                                         
 
                                         </div>
-                                        <!-- 最后回复时间 -->
-                                        <!-- <div class="time">
-                                            <p>{{articleIfm.last_reply_at}}</p>
-
-                                        </div> -->
-
-                                        <!-- 文章内容预览 -->
-                                        <!-- <div>
-                                            <p v-html="articleIfm.content"></p>
-                                        </div> -->
+                                        
                                     </router-link>
                                 </li>
                             
@@ -58,7 +49,7 @@
                                     <!-- 作者头像 -->
                                     <div>
                                         <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                        <img  :src="articleIfm.author.avatar_url"> 
                                     </div>
                                     <!-- 分类和置顶 -->
                                     
@@ -99,7 +90,7 @@
                                     <!-- 作者头像 -->
                                     <div>
                                         <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                        <img  :src="articleIfm.author.avatar_url"> 
                                     </div>
                                     <!-- 分类和置顶 -->
                                     
@@ -127,6 +118,41 @@
                     </div>
                     
                 </el-tab-pane>
+                <el-tab-pane label= "招聘">
+                   
+                    <div class="mainBlock">
+                        <ul>
+                            
+                                <li class="articles" v-for="articleIfm in jobData">
+                                    <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                        <!-- 作者头像 -->
+                                        <div>
+                                            <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                            <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                        </div>
+                                        <!-- 分类和置顶 -->
+                                        
+                                        <!-- 标题等信息 -->
+                                        <div class="titleAnd">
+                                            <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
+                                            <span>
+                                                <p>{{articleIfm.reply_count}}人次访问</p>
+                                                |
+                                                <p>{{articleIfm.visit_count}}条评论</p>
+                                                <p>{{articleIfm.last_reply_at}}</p>
+                                            </span>
+                                            
+                                        
+
+                                        </div>
+                                        
+                                    </router-link>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                    
+                </el-tab-pane>
                 
                 <el-tab-pane label= "精华">
 
@@ -138,7 +164,7 @@
                                     <!-- 作者头像 -->
                                     <div>
                                         <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                        <img class="lazy" :src="articleIfm.author.avatar_url"> 
+                                        <img  :src="articleIfm.author.avatar_url"> 
                                     </div>
                                     <!-- 分类和置顶 -->
                                     
@@ -278,32 +304,44 @@ export default {
     
 </script>
 <style>
-    /* .el-tabs__nav {
-        text-align: center !important;
-    }
-    .el-tabs__nav-wrap::after {
-        width: 100%;
-    } */
-    /* .el-tabs__item {
-        padding: 0px 11% !important;
-       
-
-
-    } */
-    .el-tabs__active-bar {
+    
+    /* .el-tabs__active-bar {
         width: 20% !important;
     }
     .el-tabs__content {
         padding: 0px 40px !important;
     }
     .el-tabs__item {
-        padding: 0 60px !important;
+        padding: 0 80px !important;
+    } */
+    .el-tabs {
+        width: 100% !important;
     }
+    .el-tabs__header {
+        width:100% !important;
+    }
+    .el-tabs__nav {
+        width: 100% !important;
+    }
+    .el-tabs__nav-wrap {
+        width: 100% !important;
+    }
+    .el-tabs__active-bar {
+        width: 18% !important;
+    }
+    .el-tabs__item {
+        padding: 0 9% !important;
+    }
+    
 
     
 
 </style>
 <style scoped>
+    /* template {
+        display:flex;
+        width:100%;
+    } */
     .mainBlock a {
         display:flex;
         color:black;
@@ -312,6 +350,8 @@ export default {
         display: flex;
         justify-content: flex-start ;
         flex-wrap: wrap;
+        width:100%;
+        
 
     }
     .nav {
@@ -324,35 +364,47 @@ export default {
     }
     
     .mainBlock {
+        display:flex;
         
-        margin-top: 45px;
+        margin-top: 3%;
         width: 100%;
         /* border: 1px solid rgb(200, 194, 194);
         border-radius: 5px; */
         /* background-color: pink; */
         
     }
+    .mainBlock ul {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+
+    }
     .mainBlock li{
-        display:block;
-        width:100%;
+        display:flex;
+        width:80%;
         border: 1px solid rgb(200, 194, 194);
         border-radius: 5px;
         margin-bottom: 5px;
         
         
     }
+    .mainBlock a {
+        width:100%;
+    }
     .mainBlock {
-        display:block;
+        display:flex;
         
     }
     .articles {
-        padding: 5px 5px;
+        padding: 0.5% 0.5%;
         position: relative;
         display: flex;
 
     }
     .articles .tags{
-        margin: 25px 10px;
+        margin: 2% 2%;
     }
     .articles img {
         
@@ -367,7 +419,12 @@ export default {
         border: 0px;
     } */
     .titleAnd {
-        margin:10px 20px;
+        margin:1% 2%;
+        width:90%;
+
+    }
+    .titleAnd h4 {
+        width: 80%;
     }
     
     .titleAnd span {
@@ -375,8 +432,8 @@ export default {
         display: flex;
     }
     .titleAnd button {
-        padding: 8px 10px;
-        margin-left: 5px;
+        padding: 0.8% 1.3%;
+        margin-left: 0.5%;
         background-color: rgb(68, 124, 170);
         color: #ffffff;
         border: 1px;
@@ -384,12 +441,8 @@ export default {
 
     }
     .titleAnd span p{
-        margin: 0px 5px;
+        margin: 0 0.7%;
     }
-    .articles .time {
-        position: relative;
-        top: 45px;
-        left: 20px;
-    }
+    
 
 </style>

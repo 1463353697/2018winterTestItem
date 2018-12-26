@@ -3,7 +3,7 @@
         <div class="articleBlock">
             <!-- 这里是有关文章发布的一些信息 -->
             <div class="head">
-                <h2>{{theArticle.title}}</h2>
+                <h3>{{theArticle.title}}</h3>
                 
             
                 <div class="detailIfm">
@@ -29,7 +29,7 @@
             
             <!-- 这一块是文章的具体内容，要从接口里面获取 -->
             
-            <div class="articleBlock">
+            <div>
                 <!-- 文章的具体内容 -->
                 <p v-html = "theArticle.content"></p>
 
@@ -120,7 +120,7 @@ export default {
         
     }
     .articleBlock {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: column;
             
@@ -137,21 +137,21 @@ export default {
         display: flex;
         align-items: center;
             
-        /* margin: 8px 10px; */
  
     }
     .detailIfm li {
         display: flex;
         margin-right: 20px;
-        margin: 20px 0px;
+        margin: 1% 0.2%;
     }
+    
     .detailIfm img {
         width: 60px;
         height: 60px;
         border-radius: 20px;
 
     }
-    .yourComment .imgBlock {
+    /* .yourComment .imgBlock {
         display: flex;
     }
     .yourComment .imgBlock p {
@@ -161,11 +161,18 @@ export default {
         width: 50px;
         height: 50px;
         border-radius: 25px;
-    }
+    } */
     .comments {
         border: 1px solid grey;
-        padding: 5px;
+        padding: 1%;
         border-radius: 5px;
+    }
+    .comments li img{
+        width:80%;
+    }
+    .comments li {
+        list-style: none;
+        padding: 1% 0;
     }
     .comments .ifm {
         display: flex;
@@ -176,15 +183,16 @@ export default {
         border-radius: 25px;
     }
     .comments .ifm .detail {
-        margin-top: 18px;
+        width: 100%;
+        margin: 1% 1%;
         display: flex;
     }
     .comments .ifm .detail p{
-        margin-right: 20px;
+        margin-right: 1.5%;
     }
     .comments .words {
-        margin-top: 10px;
-        margin-left: 50px;
+        margin-top: 0.5%;
+        margin-left: 4%;
         
     }
         

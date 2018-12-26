@@ -136,7 +136,7 @@ export default {
                         return "女";
                     }
                 }
-                var sign = document.getElementById('sign');
+                var sign = document.getElementById('sign').value;
                 var phone = document.getElementById('phone').value;
                 
                 
@@ -160,6 +160,7 @@ export default {
                     else{
                         
                         this.ifm = data.data.ext_info;
+                        
                         
                         
                            
@@ -223,6 +224,7 @@ export default {
                     var unChangeIfm = data.data.info;
                    
                     this.ucIfm = unChangeIfm;
+                    this.ifm = data.data.info.ext_info;
                     
                     
                 }
