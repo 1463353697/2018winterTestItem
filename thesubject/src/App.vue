@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     
-    <div>
+    <div class="nav">
       <router-link to="/">登录</router-link>
       <router-link to="/signIn">注册</router-link>
       
@@ -30,6 +30,9 @@ export default {
     /* text-align: center; */
     color: #2c3e50; 
     
+    font: normal 100% Helvetica, Arial, sans-serif;
+
+    
   }
   button {
     cursor: pointer;
@@ -39,3 +42,22 @@ export default {
   }
   
 </style>
+<style scoped>
+  .nav {
+    display:flex;
+    width:25%;
+    height: 12%;
+    color:#fff;
+    background-color: rgb(68, 124, 170);
+    padding: 1% 1%;
+    margin-bottom: 3%;
+  }
+  a {
+    color:#fff;
+   
+    margin-right: 5%;
+    font-size: 0.8em;
+
+  }
+</style>
+

@@ -1,14 +1,11 @@
 <template>
-<!-- 新 Bootstrap 核心 CSS 文件 -->
-
     <div class="mainPage">
         <div class="nav">
             <el-tabs>
                 <el-tab-pane label= "全部">
                    
                     <div class="mainBlock">
-                        <ul>
-                            
+                        <ul id="allBlock">                           
                                 <li class="articles" v-for="articleIfm in allListData">
                                     <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
                                         <!-- 作者头像 -->
@@ -33,8 +30,7 @@
                                         </div>
                                         
                                     </router-link>
-                                </li>
-                            
+                                </li>                            
                         </ul>
                     </div>
                     
@@ -84,7 +80,7 @@
                 <el-tab-pane label= "分享">
                     
                     <div  class="mainBlock">
-                        <ul >
+                        <ul id="shareBlock" >
                             <li class="articles" v-for="articleIfm in shareData">
                                 <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
                                     <!-- 作者头像 -->
@@ -121,7 +117,7 @@
                 <el-tab-pane label= "招聘">
                    
                     <div class="mainBlock">
-                        <ul>
+                        <ul id="jobBlock">
                             
                                 <li class="articles" v-for="articleIfm in jobData">
                                     <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
@@ -158,7 +154,7 @@
 
                     
                     <div  class="mainBlock">
-                        <ul >
+                        <ul id="goodBlock" >
                             <li class="articles" v-for="articleIfm in goodData">
                                 <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
                                     <!-- 作者头像 -->
@@ -203,19 +199,17 @@
     
 </template>
 
+
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
  
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
- 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script>
 
-// import lazyload from "jquery-lazyload";
+
 import axios from "axios";
 import underscore from "underscore";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootstrap/dist/js/bootstrap.min.js';
+
+
 
 export default {
     data(){
@@ -233,8 +227,34 @@ export default {
         function(){
             axios.get("https://cnodejs.org/api/v1/topics")
             .then(response=>{
+               
+                console.log(response.data.data[0].last_reply_at);
+                function convertUTCTimeToLocalTime (UTCDateString) {
+                    if(!UTCDateString){
+                    return '-';
+                    }
+                    function formatFunc(str) {    //格式化显示
+                    return str > 9 ? str : '0' + str
+                    }
+                    var date2 = new Date(UTCDateString);     //这步是关键
+                    var year = date2.getFullYear();
+                    var mon = formatFunc(date2.getMonth() + 1);
+                    var day = formatFunc(date2.getDate());
+                    var hour = date2.getHours();
+                    // var noon = hour >= 12 ? 'PM' : 'AM';
+                    // hour = hour>=12?hour-12:hour;
+                    hour = formatFunc(hour);
+                    var min = formatFunc(date2.getMinutes());
+                    var dateStr = year+'-'+mon+'-'+day+' '+hour+':'+min;
+                    return dateStr;
+            }
+            console.log(convertUTCTimeToLocalTime("2017-11-16T05:23:20.000Z"));    
+//2017-11-16 PM 01:23
+                
                 
                 this.allListData = response.data.data;
+                
+                console.log(this.allListData[0].last_reply_at);
                 console.log(response);
                 
                 console.log("加载完毕");
@@ -244,7 +264,7 @@ export default {
                 let shareData = [];
                 let goodData = [];
                 let jobData = [];
-                // console.log(routerTo.name);
+               
                 // 循环获取到的数据，筛选类别，放入不同的数组
                 for(var i = 0; i<this.allListData.length;i++){
                     if(this.allListData[i].tab=="ask"){
@@ -284,11 +304,18 @@ export default {
                 console.log(error);
 
             })
+           
+								
+
+
+            
+            
         },
     mounted:
         function(){
             
-            var askLi = document.getElementById('askBlock').getElementsByTagName('li');
+            var askLi = document.getElementById('allBlock').getElementsByTagName('li');
+            
             
             
             
@@ -305,15 +332,7 @@ export default {
 </script>
 <style>
     
-    /* .el-tabs__active-bar {
-        width: 20% !important;
-    }
-    .el-tabs__content {
-        padding: 0px 40px !important;
-    }
-    .el-tabs__item {
-        padding: 0 80px !important;
-    } */
+    
     .el-tabs {
         width: 100% !important;
     }
