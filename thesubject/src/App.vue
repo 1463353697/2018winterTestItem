@@ -45,7 +45,7 @@ export default {
 <style scoped>
   .nav {
     display:flex;
-    width:25%;
+    
     height: 12%;
     color:#fff;
     background-color: rgb(68, 124, 170);

@@ -225,10 +225,9 @@ export default {
     },
     created: 
         function(){
-            axios.get("https://cnodejs.org/api/v1/topics")
-            .then(response=>{
-               
-                console.log(response.data.data[0].last_reply_at);
+            //这是封装的一个函数，它可以改变时间的格式
+            function changeTime(gainTime){
+                
                 function convertUTCTimeToLocalTime (UTCDateString) {
                     if(!UTCDateString){
                     return '-';
@@ -241,69 +240,115 @@ export default {
                     var mon = formatFunc(date2.getMonth() + 1);
                     var day = formatFunc(date2.getDate());
                     var hour = date2.getHours();
-                    // var noon = hour >= 12 ? 'PM' : 'AM';
-                    // hour = hour>=12?hour-12:hour;
+                    
                     hour = formatFunc(hour);
                     var min = formatFunc(date2.getMinutes());
                     var dateStr = year+'-'+mon+'-'+day+' '+hour+':'+min;
                     return dateStr;
-            }
-            console.log(convertUTCTimeToLocalTime("2017-11-16T05:23:20.000Z"));    
-//2017-11-16 PM 01:23
-                
-                
-                this.allListData = response.data.data;
-                
-                console.log(this.allListData[0].last_reply_at);
-                console.log(response);
-                
-                console.log("加载完毕");
-                
-                let routerTo = { name: 'article', params: { id:this.id}};
-                let askData = [];
-                let shareData = [];
-                let goodData = [];
-                let jobData = [];
-               
-                // 循环获取到的数据，筛选类别，放入不同的数组
-                for(var i = 0; i<this.allListData.length;i++){
-                    if(this.allListData[i].tab=="ask"){
-                        askData.push(this.allListData[i]);
-                    }
-
-                    if(this.allListData[i].tab=="share"){
-                        shareData.push(this.allListData[i]);
-                    }
-
-                    if(this.allListData[i].tab=="job"){
-                        jobData.push(this.allListData[i]);
-                    }
-
-                     if(this.allListData[i].good == true){
-                        goodData.push(this.allListData[i]);
-                    }
-
-
-                    
                 }
-
-                //将数组赋给相应插值的数据
+             
+                var eThetime =  convertUTCTimeToLocalTime(gainTime);
+                var theTime = new Date(eThetime);
+                var nowTime = new Date();
+                var tms = nowTime.getTime() - theTime.getTime();
+                var ts = tms/1000;
+                //不到一小时的情况
+                if(ts<(60*60)){
+                    let minutes = parseInt(ts/60) + "分钟前";
+                    gainTime = minutes;
+                    return gainTime;
+                }
                 
-                this.askData = askData;              
-                this.shareData = shareData;
-                this.jobData = jobData;
-                this.goodData = goodData;
-                
+                //不到一天的情况
+                if(ts>(60*60) && ts<(24*60*60)){
+                    let hours = parseInt(ts/(60*60)) + "小时前";
+                    gainTime = hours;
+                    return gainTime ;
 
+                }
+                //时间大于一天
+                if(ts>(24*60*60)){
+                    let days = parseInt(ts/(60*60*24)) + "天前";
+                    gainTime = days;
+                    return gainTime;
 
-        
-            
+                }
+            }
+            //请求“全部”
+            let theAllGet = "https://cnodejs.org/api/v1/topics?limit="+9+"&page="+1;
+            axios.get(theAllGet)
+            .then(response=>{       
+                this.allListData = response.data.data;
+                for(let i=0;i<this.allListData.length;i++){
+                   this.allListData[i].last_reply_at= changeTime(this.allListData[i].last_reply_at);
+                }
+                // let routerTo = { name: 'article', params: { id:this.id}}
+            })
+            .catch(error=>{
+                console.log(error);
+            });
+            //请求“问答”
+            let theAskGet = "https://cnodejs.org/api/v1/topics?limit="+9+"&page="+1+"&tab=ask";
+            axios.get(theAskGet)
+            .then(response=>{
+                console.log(response.data.data);
+                this.askData = response.data.data;
+                console.log(this.askData[0].tab);
+                for(let i=0;i<this.askData.length;i++){
+                   this.askData[i].last_reply_at= changeTime(this.askData[i].last_reply_at);
+                }
 
             })
             .catch(error=>{
                 console.log(error);
+            })
+            //请求“分享”
+            let theShareGet = "https://cnodejs.org/api/v1/topics?limit="+9+"&page="+1+"&tab=share";
+            axios.get(theShareGet)
+            .then(response=>{
+                this.shareData = response.data.data;
+                
+                for(let i=0;i<this.shareData.length;i++){
+                   this.shareData[i].last_reply_at= changeTime(this.shareData[i].last_reply_at);
+                }
 
             })
+            .catch(error=>{
+                console.log(error);
+            })
+            //请求“精华”
+            let theGoodGet = "https://cnodejs.org/api/v1/topics?limit="+9+"&page="+1+"&tab=good";
+            axios.get(theGoodGet)
+            .then(response=>{
+                console.log(response.data.data);
+                this.goodData = response.data.data;
+                
+                for(let i=0;i<this.goodData.length;i++){
+                   this.goodData[i].last_reply_at= changeTime(this.goodData[i].last_reply_at);
+                }
+
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+            //请求“招聘”
+            let theJobGet = "https://cnodejs.org/api/v1/topics?limit="+9+"&page="+1+"&tab=job";
+            axios.get(theJobGet)
+            .then(response=>{
+                
+                this.jobData = response.data.data;
+               
+                for(let i=0;i<this.jobData.length;i++){
+                   this.jobData[i].last_reply_at= changeTime(this.jobData[i].last_reply_at);
+                }
+
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+            
+            
+
            
 								
 
