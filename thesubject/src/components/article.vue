@@ -29,7 +29,7 @@
             
             <!-- 这一块是文章的具体内容，要从接口里面获取 -->
             
-            <div>
+            <div class="content">
                 <!-- 文章的具体内容 -->
                 <p v-html = "theArticle.content"></p>
 
@@ -91,12 +91,61 @@ export default {
     
     created:
         function(){
+            function changeTime(gainTime){
+                
+                function convertUTCTimeToLocalTime (UTCDateString) {
+                    if(!UTCDateString){
+                    return '-';
+                    }
+                    function formatFunc(str) {    //格式化显示
+                    return str > 9 ? str : '0' + str
+                    }
+                    var date2 = new Date(UTCDateString);     //这步是关键
+                    var year = date2.getFullYear();
+                    var mon = formatFunc(date2.getMonth() + 1);
+                    var day = formatFunc(date2.getDate());
+                    var hour = date2.getHours();
+                    
+                    hour = formatFunc(hour);
+                    var min = formatFunc(date2.getMinutes());
+                    var dateStr = year+'-'+mon+'-'+day+' '+hour+':'+min;
+                    return dateStr;
+                }
+             
+                var eThetime =  convertUTCTimeToLocalTime(gainTime);
+                var theTime = new Date(eThetime);
+                var nowTime = new Date();
+                var tms = nowTime.getTime() - theTime.getTime();
+                var ts = tms/1000;
+                //不到一小时的情况
+                if(ts<(60*60)){
+                    let minutes = parseInt(ts/60) + "分钟前";
+                    gainTime = minutes;
+                    return gainTime;
+                }
+                
+                //不到一天的情况
+                if(ts>(60*60) && ts<(24*60*60)){
+                    let hours = parseInt(ts/(60*60)) + "小时前";
+                    gainTime = hours;
+                    return gainTime ;
+
+                }
+                //时间大于一天
+                if(ts>(24*60*60)){
+                    let days = parseInt(ts/(60*60*24)) + "天前";
+                    gainTime = days;
+                    return gainTime;
+
+                }
+            }
             console.log(this.theId);
             var requestId = this.theId;
             var theGet = "https://cnodejs.org/api/v1/topic/"+requestId;
             axios.get(theGet)
             .then(response=>{
                 this.theArticle = response.data.data;
+                this.theArticle.create_at = changeTime(this.theArticle.create_at);
                
                 console.log(response);
 
@@ -151,6 +200,12 @@ export default {
         border-radius: 20px;
 
     }
+    .comments {
+        display:flex;
+    }
+    .comments img{
+        width:80%;
+    }
     /* .yourComment .imgBlock {
         display: flex;
     }
@@ -167,15 +222,17 @@ export default {
         padding: 1%;
         border-radius: 5px;
     }
-    .comments li img{
-        width:80%;
-    }
+    
     .comments li {
         list-style: none;
         padding: 1% 0;
     }
     .comments .ifm {
         display: flex;
+    }
+    .comments .ifm img {
+
+        width: 80%;
     }
     .comments .ifm img {
         width: 50px;

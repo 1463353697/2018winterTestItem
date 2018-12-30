@@ -3,36 +3,37 @@
         <div class="nav">
             <el-tabs>
                 <el-tab-pane label= "全部">
+                    
                    
-                    <div class="mainBlock">
-                        <ul id="allBlock">                           
-                                <li class="articles" v-for="articleIfm in allListData">
-                                    <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
-                                        <!-- 作者头像 -->
-                                        <div>
-                                            <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
-                                            <img  :src="articleIfm.author.avatar_url"> 
-                                        </div>
-                                        <!-- 分类和置顶 -->
-                                        
-                                        <!-- 标题等信息 -->
-                                        <div class="titleAnd">
-                                            <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
-                                            <span>
-                                                <p>{{articleIfm.reply_count}}人次访问</p>
-                                                |
-                                                <p>{{articleIfm.visit_count}}条评论</p>
-                                                <p>{{articleIfm.last_reply_at}}</p>
-                                            </span>
+                        <div class="mainBlock">
+                            <ul id="allBlock">                           
+                                    <li class="articles" v-for="articleIfm in allListData">
+                                        <router-link :to = "{ name: 'article', params: { id:articleIfm.id}}" >
+                                            <!-- 作者头像 -->
+                                            <div>
+                                                <!-- 注意这里用vue的时候不能直接用大括号，要用属性绑定 -->
+                                                <img  :src="articleIfm.author.avatar_url"> 
+                                            </div>
+                                            <!-- 分类和置顶 -->
                                             
-                                        
+                                            <!-- 标题等信息 -->
+                                            <div class="titleAnd">
+                                                <h4>{{articleIfm.title}}<button>{{articleIfm.tab}}</button></h4>
+                                                <span>
+                                                    <p>{{articleIfm.reply_count}}人次访问</p>
+                                                    |
+                                                    <p>{{articleIfm.visit_count}}条评论</p>
+                                                    <p>{{articleIfm.last_reply_at}}</p>
+                                                </span>
+                                                
+                                            
 
-                                        </div>
-                                        
-                                    </router-link>
-                                </li>                            
-                        </ul>
-                    </div>
+                                            </div>
+                                            
+                                        </router-link>
+                                    </li>                            
+                            </ul>
+                        </div>
                     
                 </el-tab-pane>
                 <el-tab-pane  label= "问答">
@@ -206,6 +207,9 @@
 <script>
 
 
+import Vue from 'vue'
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
 import axios from "axios";
 import underscore from "underscore";
 
